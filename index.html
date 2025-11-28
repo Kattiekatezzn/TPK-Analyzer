@@ -1,42 +1,60 @@
-<!DOCTYPE html>\
-<html lang="en">\
-<head>\
-    <meta charset="UTF-8">\
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-    <title>TPK Analyzer</title>\
-    <link rel="stylesheet" href="style.css">\
-\
-    <link rel="manifest" href="manifest.json">\
-</head>\
-<body>\
-    <div class="container">\
-        <h1>TPK Analyzer</h1>\
-\
-        <div class="input-section">\
-            <input id="suitInput" placeholder="Suit (C, D, H, S)">\
-            <input id="rankInput" placeholder="Rank (1\'9613)">\
-            <select id="outcomeInput">\
-                <option value="HC">High Card</option>\
-                <option value="1P">One Pair</option>\
-                <option value="2P">Two Pair</option>\
-                <option value="3K">Trips / Straight / Flush</option>\
-                <option value="FH">Full House</option>\
-            </select>\
-\
-            <button onclick="record()">Record</button>\
-        </div>\
-\
-        <h2>Predict Outcome</h2>\
-        <div class="input-section">\
-            <input id="predictSuit" placeholder="Suit (C, D, H, S)">\
-            <input id="predictRank" placeholder="Rank (1\'9613)">\
-            <button onclick="predict()">Predict</button>\
-        </div>\
-\
-        <div id="result"></div>\
-    </div>\
-\
-    <script src="script.js"></script>\
-</body>\
-</html>\
-}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TPK Analyzer</title>
+  <meta name="theme-color" content="#0b2b1a" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="chip">TPK</div>
+      <h1>TPK Analyzer</h1>
+    </div>
+    <button id="clearBtn" class="small ghost">Reset</button>
+  </header>
+
+  <main class="wrap">
+    <section class="panel cards-panel">
+      <h2>Select first flip</h2>
+      <div id="cardButtons" class="cards-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="panel actions-panel">
+      <h2>Record outcome</h2>
+      <div class="outcomes">
+        <button class="outcome-btn" data-code="HC">HC</button>
+        <button class="outcome-btn" data-code="2P">2P</button>
+        <button class="outcome-btn" data-code="3K">3K</button>
+        <button class="outcome-btn" data-code="FH">FH</button>
+      </div>
+
+      <div class="quick">
+        <input id="quickCard" placeholder="e.g. AC or 7D" />
+        <input id="quickOutcome" placeholder="HC / 2P / 3K / FH" maxlength="3" />
+        <button id="quickAdd" class="small">Add</button>
+      </div>
+
+      <h2>Predict</h2>
+      <div class="predict">
+        <input id="predictCard" placeholder="e.g. AC" />
+        <button id="doPredict" class="small">Predict</button>
+      </div>
+
+      <div id="predictResult" class="result" aria-live="polite">Select a card to begin.</div>
+    </section>
+
+    <section class="panel data-panel">
+      <h2>Stored data</h2>
+      <div id="dataList" class="data-list">No data yet.</div>
+    </section>
+  </main>
+
+  <footer class="footer">Shortcuts: HC = High Card, 2P = Two Pair, 3K = Trips/Str/Flush, FH = Full House</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
